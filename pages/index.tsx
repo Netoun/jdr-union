@@ -1,27 +1,25 @@
 import { NextPage } from 'next'
+import { TITLE, BACKGROUND, PLAYERS } from '../utils/constants'
+
+import { IPlayer } from '../types'
+
 import Layout from '../components/Layout'
 import Card from '../components/Card'
 
-const title = 'Dungeons & Dragons'
-const background = '/dnd_background.jpg'
-
-const player = {
-  name: 'Netoun',
-  backgroundImg: '/netoun_bg.jpg',
-  playerImg: '/netoun_player.png',
-}
-
 const IndexPage: NextPage = () => {
+  function onClickPlayer(player: IPlayer): void {
+    console.log(player)
+  }
+
   return (
-    <Layout title={title} background={background}>
-      <Card backgroundImg={player.backgroundImg} playerImg={player.playerImg}>
-        <h2> {player.name} </h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, molestiae. Beatae, suscipit
-          autem deserunt eos est eum veritatis a repellat quas quo recusandae illum voluptate omnis
-          repudiandae ipsum dolore. Impedit.
-        </p>
-      </Card>
+    <Layout title={TITLE} background={BACKGROUND}>
+      {PLAYERS.map((player) => (
+        <Card player={player} key={player.name} onClick={() => onClickPlayer(player)}>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla harum cupiditate in
+          praesentium perferendis eligendi tenetur? Est nisi distinctio similique enim iure velit
+          fugiat quisquam. Eaque sed deserunt distinctio quod.
+        </Card>
+      ))}
     </Layout>
   )
 }
